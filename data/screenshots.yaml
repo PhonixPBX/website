@@ -4,10 +4,10 @@
   src: "/screenshots/dashboard.png"
 - title: Phones
   caption: Add PJSIP, IAX and external phones in seconds.
-  src: ""
+  src: "/screenshots/phones.png"
 - title: Dialplan
   caption: Call groups, applications and feature codes.
-  src: ""
+  src: "/screenshots/callgroups.png"
 - title: Live status
   caption: Channels, logs and resource graphs in real time.
-  src: ""
+  src: "/screenshots/logs.png"
