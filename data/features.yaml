@@ -17,8 +17,8 @@
   title: Updates you can trust
   text: Signed firmware updates on A/B system slots with automatic rollback and a read-only squashfs root.
 - icon: api
-  title: API & metrics
-  text: REST API with bearer tokens, Prometheus metrics at /api/v1/metrics and a console menu for the basics.
+  title: API, MCP & metrics
+  text: REST API with bearer tokens, an MCP server for AI assistants, Prometheus metrics at /api/v1/metrics and a console menu for the basics.
 - icon: language
   title: Speaks your language
   text: The web interface ships in 13 languages, from English and German to Portuguese (BR), Russian and Japanese.
