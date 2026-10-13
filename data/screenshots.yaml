@@ -1,7 +1,7 @@
 # Drop real screenshots into static/screenshots/ and set `src`, e.g. src: screenshots/dashboard.png
 - title: Dashboard
   caption: System health, registrations and active calls at a glance.
-  src: ""
+  src: "/screenshots/dashboard.png"
 - title: Phones
   caption: Add PJSIP, IAX and external phones in seconds.
   src: ""
