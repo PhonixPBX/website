@@ -41,17 +41,13 @@ the build still succeeds and links to the GitHub releases page.
 `.github/workflows/pages.yml` builds and deploys to GitHub Pages:
 
 - on push to `main`
-- daily (to pick up new nightlies)
+- daily (fallback)
 - on manual dispatch
-- on a `repository_dispatch` event of type `release`
+- on a `repository_dispatch` event of type `release`, sent by the PhonixPBX `image.yml` workflow
+  after every release and nightly build
 
-The PhonixPBX release workflow can trigger a rebuild with:
-
-```sh
-gh api repos/PhonixPBX/website/dispatches -f event_type=release
-```
-
-(this needs a token with access to this repository).
+The dispatch needs the `WEBSITE_DISPATCH_TOKEN` secret in the PhonixPBX repository. See [DEV.md](DEV.md)
+for how to create and renew it.
 
 Pull requests are built but not deployed.
 
