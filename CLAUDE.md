@@ -27,4 +27,4 @@ Set `HUGO_GITHUB_TOKEN` locally to avoid GitHub API rate limits. Remote release 
 
 ## Deployment
 
-`.github/workflows/pages.yml` builds on every push/PR and deploys to GitHub Pages (custom domain `phonixpbx.org`) for non-PR events: push to `main`, daily cron (to pick up new nightlies), manual dispatch, and `repository_dispatch` type `release` (triggered by the PhonixPBX release workflow). The workflow overrides `baseURL` with the Pages URL. Dependabot patch updates are auto-merged once `build` passes.
+`.github/workflows/pages.yml` builds on every push/PR and deploys to GitHub Pages (custom domain `phonixpbx.org`) for non-PR events: push to `main`, daily cron (fallback), manual dispatch, and `repository_dispatch` type `release` (sent by the `website` job in the PhonixPBX `image.yml` after every tagged release and every nightly, i.e. every push to its `main`; needs the `WEBSITE_DISPATCH_TOKEN` secret in that repo). The workflow overrides `baseURL` with the Pages URL. Dependabot patch updates are auto-merged once `build` passes.

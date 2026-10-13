@@ -5,10 +5,11 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
-  # Rebuild daily so the download section picks up the latest nightly build.
+  # Daily fallback rebuild in case a dispatch from the PhonixPBX repo was missed.
   schedule:
     - cron: "30 7 * * *"
-  # Lets the PhonixPBX repo trigger a rebuild after publishing a release:
+  # Sent by the `website` job of PhonixPBX/PhonixPBX image.yml after every release
+  # and nightly build (needs the WEBSITE_DISPATCH_TOKEN secret there). Manually:
   #   gh api repos/PhonixPBX/website/dispatches -f event_type=release
   repository_dispatch:
     types: [release]
