@@ -1,0 +1,7 @@
+{{- /* Inline a Tabler icon from assets/icons. Usage: partial "icon.html" (dict "name" "phone-call" "class" "size-6") */ -}}
+{{- with resources.Get (printf "icons/%s.svg" .name) -}}
+  {{- $svg := .Content | replaceRE `\s(width|height)="24"` "" | replaceRE `class="[^"]*"` (printf `class="%s" aria-hidden="true"` ($.class | default "size-5")) -}}
+  {{- $svg | safeHTML -}}
+{{- else -}}
+  {{- errorf "icon %q not found" .name -}}
+{{- end -}}

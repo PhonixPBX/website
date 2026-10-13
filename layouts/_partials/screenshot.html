@@ -1,0 +1,12 @@
+{{- /* A screenshot, or a placeholder until a real image is provided.
+       Params: title, caption, src (path under static/, optional), aspect (tailwind class, optional) */ -}}
+{{- $aspect := .aspect | default "aspect-[16/10]" -}}
+{{- if .src }}
+  <img src="{{ .src | relURL }}" alt="PhonixPBX {{ .title }} screenshot" loading="lazy" class="{{ $aspect }} w-full object-cover object-top">
+{{- else }}
+  <div class="{{ $aspect }} placeholder-stripes flex w-full flex-col items-center justify-center gap-2 bg-base-200 p-6 text-center" role="img" aria-label="{{ .title }} screenshot placeholder">
+    <img src="{{ "img/favicon.svg" | relURL }}" alt="" width="48" height="48" class="size-12 opacity-60">
+    <span class="text-sm font-semibold text-base-content/70">{{ .title }}</span>
+    <span class="text-xs text-base-content/50">Screenshot coming soon</span>
+  </div>
+{{- end }}

@@ -1,0 +1,18 @@
+<section class="hero-grid bg-slate-brand text-white">
+  <div class="mx-auto flex max-w-4xl flex-col items-center px-4 py-20 text-center sm:px-6">
+    <img src="{{ "img/logo-sidebar.svg" | relURL }}" alt="" width="222" height="60" class="h-14 w-auto opacity-90">
+    <h2 class="mt-8 text-3xl font-bold tracking-tight text-balance sm:text-4xl">Help the phoenix rise</h2>
+    <p class="mt-4 max-w-2xl text-lg text-white/75">
+      PhonixPBX is free software under the Apache-2.0 license. Try the nightly builds, report issues,
+      translate the interface or send a pull request.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="{{ site.Params.repoURL }}" class="btn btn-lg border-0 bg-white text-slate-brand hover:bg-brand-sky">
+        {{ partial "icon.html" (dict "name" "brand-github" "class" "size-5") }} Star on GitHub
+      </a>
+      <a href="{{ site.Params.repoURL }}/issues" class="btn btn-lg btn-outline border-white/40 text-white hover:border-white hover:bg-white/10">
+        Report an issue
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+{{- $r := partialCached "releases.html" . -}}
+{{- $tag := cond (ne $r.stable nil) "latest" "edge" -}}
+{{- $ver := "<version>" -}}
+{{- with ($r.stable | default $r.nightly) }}{{ with index (where .assets "name" "like" `^phonix-.+-lxc-amd64\.tar\.xz$`) 0 }}{{ $ver = replaceRE `^phonix-(.+)-lxc-amd64\.tar\.xz$` "$1" .name }}{{ end }}{{ end -}}
+{{- $snippets := slice
+  (dict "id" "qs-docker" "title" "Docker / Podman" "icon" "brand-docker" "lines" (slice
+    "docker run -d --name phonix --restart unless-stopped \\"
+    "  --network host -v phonix-data:/data \\"
+    (printf "  %s:%s" site.Params.image $tag)))
+  (dict "id" "qs-proxmox" "title" "Proxmox VE" "icon" "server-2" "lines" (slice
+    (printf "pct create 200 local:vztmpl/phonix-%s-lxc-amd64.tar.xz \\" $ver)
+    "  --hostname phonix --memory 1024 --rootfs local-lvm:4 \\"
+    "  --net0 name=eth0,bridge=vmbr0,ip=dhcp --unprivileged 1"
+    "pct start 200"))
+  (dict "id" "qs-incus" "title" "Incus" "icon" "box" "lines" (slice
+    (printf "incus image import phonix-%s-incus-amd64.tar.xz --alias phonix" $ver)
+    "incus launch phonix pbx"))
+  (dict "id" "qs-rpi" "title" "Raspberry Pi / PC" "icon" "cpu" "lines" (slice
+    (printf "zstd -dc phonix-%s-rpi-arm64.img.zst | \\" $ver)
+    "  sudo dd of=/dev/sdX bs=4M conv=fsync status=progress"))
+-}}
+<section id="quickstart" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    {{ partial "section-head.html" (dict
+      "eyebrow" "Quick start"
+      "title" "Up and running in minutes"
+      "text" "Open the web interface in your browser and log in as admin. The initial password is shown on the console or in the container log."
+    ) }}
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      {{- range $snippets }}
+      <div class="min-w-0">
+        <div class="mb-2 flex items-center justify-between">
+          <h3 class="flex items-center gap-2 font-semibold">{{ partial "icon.html" (dict "name" .icon "class" "size-5 text-primary") }}{{ .title }}</h3>
+          <button type="button" class="btn btn-ghost btn-xs tooltip tooltip-left" data-tip="Copy" data-copy="{{ .id }}" aria-label="Copy {{ .title }} commands">
+            {{ partial "icon.html" (dict "name" "copy" "class" "size-4") }} Copy
+          </button>
+        </div>
+        <div class="mockup-code w-full bg-slate-brand-deep text-sm text-white" id="{{ .id }}">
+          {{- range .lines }}<pre data-prefix="{{ if hasPrefix . " " }}>{{ else }}${{ end }}"><code>{{ . }}</code></pre>{{ end -}}
+        </div>
+      </div>
+      {{- end }}
+    </div>
+    <p class="mt-10 text-center">
+      <a href="{{ site.Params.docsURL }}" class="btn btn-outline btn-primary">
+        {{ partial "icon.html" (dict "name" "book" "class" "size-5") }} Read the full installation guide
+      </a>
+    </p>
+  </div>
+</section>

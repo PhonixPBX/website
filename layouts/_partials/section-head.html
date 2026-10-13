@@ -1,0 +1,6 @@
+{{- /* Params: eyebrow, title, text */ -}}
+<div class="mx-auto max-w-2xl text-center">
+  <p class="text-sm font-semibold uppercase tracking-wider text-secondary">{{ .eyebrow }}</p>
+  <h2 class="mt-2 text-3xl font-bold tracking-tight text-balance sm:text-4xl">{{ .title }}</h2>
+  {{- with .text }}<p class="mt-4 text-lg text-base-content/70">{{ . }}</p>{{ end }}
+</div>

@@ -1,0 +1,39 @@
+# The Pages workflow overrides baseURL with the URL reported by actions/configure-pages.
+baseURL = "https://phonixpbx.github.io/website/"
+locale = "en"
+title = "PhonixPBX"
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+  description = "PhonixPBX is an open-source appliance PBX built on Alpine Linux and Asterisk 22. Successor of AskoziaPBX — for Raspberry Pi, PCs, VMs, LXC/Incus and Docker."
+  repo = "PhonixPBX/PhonixPBX"
+  repoURL = "https://github.com/PhonixPBX/PhonixPBX"
+  docsURL = "https://github.com/PhonixPBX/PhonixPBX/blob/main/docs/INSTALL.md"
+  image = "ghcr.io/phonixpbx/phonix"
+  license = "Apache-2.0"
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = "assets/notwatching/hugo_stats\\.json"
+    target = "css"
+
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    disableWatch = true
+    source = "hugo_stats.json"
+    target = "assets/notwatching/hugo_stats.json"
+
+# Release data is fetched from the GitHub API at build time; keep it fresh locally.
+[caches.getresource]
+  maxAge = "10m"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[security.exec]
+  allow = ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$']

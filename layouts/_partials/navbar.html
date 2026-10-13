@@ -1,0 +1,43 @@
+{{- $links := slice
+  (dict "href" "#features" "label" "Features")
+  (dict "href" "#screenshots" "label" "Screenshots")
+  (dict "href" "#platforms" "label" "Platforms")
+  (dict "href" "#download" "label" "Download")
+  (dict "href" "#quickstart" "label" "Quick start")
+-}}
+<header class="sticky top-0 z-50 bg-slate-brand/95 text-white shadow-md backdrop-blur supports-[backdrop-filter]:bg-slate-brand/85">
+  <nav class="navbar mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main">
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-square text-white hover:bg-white/10" aria-label="Open menu">
+          {{ partial "icon.html" (dict "name" "menu-2" "class" "size-6") }}
+        </div>
+        <ul tabindex="0" class="menu dropdown-content z-10 mt-3 w-56 rounded-box bg-base-100 p-2 text-base-content shadow-lg">
+          {{- range $links }}<li><a href="{{ .href }}">{{ .label }}</a></li>{{ end }}
+          <li><a href="{{ site.Params.docsURL }}">Docs</a></li>
+        </ul>
+      </div>
+      <a href="{{ "/" | relURL }}" class="flex items-center" aria-label="PhonixPBX home">
+        <img src="{{ "img/logo-sidebar.svg" | relURL }}" alt="PhonixPBX" width="148" height="40" class="h-9 w-auto sm:h-10">
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-1 px-1 text-[0.95rem]">
+        {{- range $links }}
+        <li><a href="{{ .href }}" class="text-white/85 hover:bg-white/10 hover:text-white">{{ .label }}</a></li>
+        {{- end }}
+        <li><a href="{{ site.Params.docsURL }}" class="text-white/85 hover:bg-white/10 hover:text-white">Docs</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end gap-1">
+      <button type="button" class="btn btn-ghost btn-square text-white hover:bg-white/10" data-theme-toggle aria-label="Toggle dark mode">
+        <span class="theme-icon-light">{{ partial "icon.html" (dict "name" "moon" "class" "size-5") }}</span>
+        <span class="theme-icon-dark hidden">{{ partial "icon.html" (dict "name" "sun" "class" "size-5") }}</span>
+      </button>
+      <a href="{{ site.Params.repoURL }}" class="btn btn-sm border-white/25 bg-white/10 text-white shadow-none hover:bg-white/20" rel="noopener">
+        {{ partial "icon.html" (dict "name" "brand-github" "class" "size-5") }}
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+  </nav>
+</header>

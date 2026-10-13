@@ -1,0 +1,13 @@
+# Drop real screenshots into static/screenshots/ and set `src`, e.g. src: screenshots/dashboard.png
+- title: Dashboard
+  caption: System health, registrations and active calls at a glance.
+  src: ""
+- title: Phones
+  caption: Add PJSIP, IAX and external phones in seconds.
+  src: ""
+- title: Dialplan
+  caption: Call groups, applications and feature codes.
+  src: ""
+- title: Live status
+  caption: Channels, logs and resource graphs in real time.
+  src: ""

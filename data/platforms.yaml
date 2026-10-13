@@ -1,0 +1,28 @@
+# Each board maps to release assets named phonix-<version>-<board>.<ext>.
+- name: Raspberry Pi
+  icon: cpu
+  kind: Disk image
+  note: Pi 3B+, 4, 400, 5 and Zero 2 W. Flash with Raspberry Pi Imager or dd.
+  boards:
+    - { board: rpi-arm64, arch: arm64 }
+- name: PC & virtual machines
+  icon: device-desktop
+  kind: Disk image
+  note: Bare metal or any hypervisor. amd64 boots UEFI or BIOS; x86 is BIOS-only and best effort.
+  boards:
+    - { board: pc-amd64, arch: amd64 }
+    - { board: pc-x86, arch: x86 }
+- name: Proxmox VE & LXC
+  icon: server-2
+  kind: System container
+  note: Use with pct create on Proxmox VE, or lxc-create with the metadata archive.
+  boards:
+    - { board: lxc-amd64, arch: amd64 }
+    - { board: lxc-arm64, arch: arm64 }
+- name: Incus & LXD
+  icon: box
+  kind: System container
+  note: Import with incus image import and launch like any other instance.
+  boards:
+    - { board: incus-amd64, arch: amd64 }
+    - { board: incus-arm64, arch: arm64 }

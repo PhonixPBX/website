@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@source "hugo_stats.json";
+@plugin "daisyui" {
+  themes: false;
+}
+
+/* PhonixPBX palette, taken from the web UI (phonix/web/static/phonix.css):
+ *   #435370 header/primary   #687BA4 accent   #D9DEE8 light info
+ *   #A12A2A errors           #1c2433 body text */
+@plugin "daisyui/theme" {
+  name: "phonix";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f2f4f8;
+  --color-base-300: #d9dee8;
+  --color-base-content: #1c2433;
+  --color-primary: #435370;
+  --color-primary-content: #ffffff;
+  --color-secondary: #687ba4;
+  --color-secondary-content: #ffffff;
+  --color-accent: #687ba4;
+  --color-accent-content: #ffffff;
+  --color-neutral: #435370;
+  --color-neutral-content: #ffffff;
+  --color-info: #687ba4;
+  --color-info-content: #ffffff;
+  --color-success: #2f9e6b;
+  --color-success-content: #ffffff;
+  --color-warning: #d9a21b;
+  --color-warning-content: #1c2433;
+  --color-error: #a12a2a;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@plugin "daisyui/theme" {
+  name: "phonix-dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #182030;
+  --color-base-200: #131a27;
+  --color-base-300: #2a3446;
+  --color-base-content: #e1e6ef;
+  --color-primary: #6d82ab;
+  --color-primary-content: #ffffff;
+  --color-secondary: #8fa6ff;
+  --color-secondary-content: #131a27;
+  --color-accent: #8fa6ff;
+  --color-accent-content: #131a27;
+  --color-neutral: #2f3a4f;
+  --color-neutral-content: #e1e6ef;
+  --color-info: #8fa6ff;
+  --color-info-content: #131a27;
+  --color-success: #4cbf8a;
+  --color-success-content: #131a27;
+  --color-warning: #e8b84a;
+  --color-warning-content: #131a27;
+  --color-error: #e05d5d;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.375rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@theme {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto,
+    "Helvetica Neue", sans-serif;
+  /* Fixed brand slate used for the header band in both themes (matches the UI sidebar). */
+  --color-slate-brand: #435370;
+  --color-slate-brand-deep: #2f3a4f;
+  --color-brand-sky: #b3c3e6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Subtle grid backdrop for the hero band. */
+.hero-grid {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 70% 0%, rgb(104 123 164 / 0.45), transparent 70%),
+    linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: auto, 40px 40px, 40px 40px;
+}
+
+/* Diagonal stripes for screenshot placeholders. */
+.placeholder-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--color-base-300) 55%, transparent) 0 10px,
+    transparent 10px 20px
+  );
+}

@@ -1,0 +1,36 @@
+<script>
+  (() => {
+    const root = document.documentElement;
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const isDark = () => (root.dataset.theme ? root.dataset.theme === "phonix-dark" : media.matches);
+    const sync = () => {
+      const dark = isDark();
+      document.querySelectorAll(".theme-icon-light").forEach((el) => el.classList.toggle("hidden", dark));
+      document.querySelectorAll(".theme-icon-dark").forEach((el) => el.classList.toggle("hidden", !dark));
+    };
+    document.querySelectorAll("[data-theme-toggle]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const next = isDark() ? "phonix" : "phonix-dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        sync();
+      })
+    );
+    media.addEventListener("change", sync);
+    sync();
+
+    // Copy-to-clipboard for command snippets.
+    document.querySelectorAll("[data-copy]").forEach((btn) =>
+      btn.addEventListener("click", async () => {
+        const target = document.getElementById(btn.dataset.copy);
+        if (!target) return;
+        try {
+          await navigator.clipboard.writeText(target.innerText.trim());
+          btn.dataset.tip = "Copied!";
+          btn.classList.add("tooltip-open");
+          setTimeout(() => { btn.classList.remove("tooltip-open"); btn.dataset.tip = "Copy"; }, 1500);
+        } catch (e) {}
+      })
+    );
+  })();
+</script>

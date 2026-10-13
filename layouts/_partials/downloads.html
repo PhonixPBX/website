@@ -1,0 +1,49 @@
+{{- $r := partialCached "releases.html" . -}}
+{{- $stableChecked := cond (ne $r.stable nil) true false -}}
+<section id="download" class="bg-base-200 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    {{ partial "section-head.html" (dict
+      "eyebrow" "Download"
+      "title" "Get PhonixPBX"
+      "text" "Pick your platform and architecture. Every file is listed in SHA256SUMS so you can verify your download."
+    ) }}
+
+    {{- if or $r.stable $r.nightly }}
+    <div class="mt-12 tabs tabs-box tabs-lg mx-auto w-full max-w-7xl bg-base-100 p-2 shadow-sm" role="tablist" aria-label="Release channel">
+      <input type="radio" name="release_channel" class="tab" aria-label="Stable" {{ if $stableChecked }}checked{{ end }}>
+      <div class="tab-content p-2 pt-4 sm:p-4">
+        {{- with $r.stable }}
+          {{ partial "release-assets.html" (dict "release" . "channel" "stable") }}
+        {{- else }}
+          <div class="flex flex-col items-center gap-4 rounded-box border border-dashed border-base-300 px-6 py-14 text-center">
+            {{ partial "icon.html" (dict "name" "package" "class" "size-10 text-base-content/40") }}
+            <h3 class="text-xl font-semibold">No stable release yet</h3>
+            <p class="max-w-lg text-base-content/70">PhonixPBX 3.0 is under active development. Until the first stable release is out, grab a nightly build to try it.</p>
+            <a href="{{ site.Params.repoURL }}/releases" class="btn btn-outline btn-sm">Watch releases on GitHub</a>
+          </div>
+        {{- end }}
+      </div>
+
+      <input type="radio" name="release_channel" class="tab" aria-label="Nightly" {{ if not $stableChecked }}checked{{ end }}>
+      <div class="tab-content p-2 pt-4 sm:p-4">
+        {{- with $r.nightly }}
+          {{ partial "release-assets.html" (dict "release" . "channel" "nightly") }}
+        {{- else }}
+          <p class="py-10 text-center text-base-content/70">No nightly build is available right now.</p>
+        {{- end }}
+      </div>
+    </div>
+    {{- else }}
+    <div class="mt-12 flex flex-col items-center gap-4 rounded-box border border-base-300 bg-base-100 px-6 py-14 text-center">
+      {{ partial "icon.html" (dict "name" "download" "class" "size-10 text-primary") }}
+      <p class="max-w-lg text-base-content/70">All images and containers are published on GitHub.</p>
+      <a href="{{ site.Params.repoURL }}/releases" class="btn btn-primary">Browse releases</a>
+    </div>
+    {{- end }}
+
+    <p class="mt-8 text-center text-sm text-base-content/60">
+      Images need at least 2&nbsp;GB of storage; containers need 512&nbsp;MB RAM (1&nbsp;GB recommended).
+      See the <a class="link link-secondary" href="{{ site.Params.docsURL }}">installation guide</a> for details.
+    </p>
+  </div>
+</section>

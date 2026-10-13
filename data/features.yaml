@@ -1,0 +1,27 @@
+- icon: phone-call
+  title: Phones & providers
+  text: PJSIP, IAX and external phones, plus SIP and IAX trunks with registration — set up in a few clicks.
+- icon: arrows-split
+  title: Dialplan without the pain
+  text: Applications, call groups, transfers, feature codes and call parking. Print the whole dialplan on one page.
+- icon: microphone-2
+  title: Voicemail & conferencing
+  text: Voicemail with voicemail-to-email, ConfBridge conference rooms, music on hold and custom greetings.
+- icon: chart-line
+  title: Live status
+  text: Dashboard, registrations and active channels via AMI, live logs over SSE, CPU and network graphs.
+- icon: shield-lock
+  title: Secure by default
+  text: nftables firewall, HTTPS with Let's Encrypt (ACME), TLS and SRTP for PJSIP, argon2-hashed credentials.
+- icon: refresh-alert
+  title: Updates you can trust
+  text: Signed firmware updates on A/B system slots with automatic rollback and a read-only squashfs root.
+- icon: api
+  title: API & metrics
+  text: REST API with bearer tokens, Prometheus metrics at /api/v1/metrics and a console menu for the basics.
+- icon: language
+  title: Speaks your language
+  text: The web interface ships in 13 languages, from English and German to Portuguese (BR), Russian and Japanese.
+- icon: file-import
+  title: Coming from AskoziaPBX?
+  text: Import the config.xml of your AskoziaPBX 2.x system and keep your phones, providers and dialplan.

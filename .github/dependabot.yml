@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # One PR per update type, so patch bumps stay auto-mergeable.
+      npm-patch:
+        update-types: [patch]
+      npm-minor:
+        update-types: [minor]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions-patch:
+        update-types: [patch]

@@ -1,0 +1,22 @@
+<section id="features" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    {{ partial "section-head.html" (dict
+      "eyebrow" "Features"
+      "title" "Everything a small office PBX needs"
+      "text" "The menu you know from AskoziaPBX, rebuilt on Asterisk 22 with PJSIP — plus the things a modern appliance should have."
+    ) }}
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {{- range hugo.Data.features }}
+      <article class="card border border-base-300 bg-base-100 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+        <div class="card-body">
+          <div class="flex size-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            {{ partial "icon.html" (dict "name" .icon "class" "size-6") }}
+          </div>
+          <h3 class="card-title mt-2 text-lg text-primary">{{ .title }}</h3>
+          <p class="text-base-content/70">{{ .text }}</p>
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<footer class="bg-slate-brand-deep text-white/80">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <img src="{{ "img/logo-sidebar.svg" | relURL }}" alt="PhonixPBX" width="185" height="50" class="h-11 w-auto">
+      <p class="mt-4 max-w-md text-sm leading-relaxed text-white/70">
+        Phonix = phone + phoenix. PhonixPBX carries on the spirit of AskoziaPBX (2007–2011):
+        an easy-to-use appliance PBX, rebuilt from the ground up on a modern open-source stack.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-white">Project</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a class="link link-hover" href="{{ site.Params.repoURL }}">Source code</a></li>
+        <li><a class="link link-hover" href="{{ site.Params.repoURL }}/releases">Releases</a></li>
+        <li><a class="link link-hover" href="{{ site.Params.repoURL }}/issues">Issue tracker</a></li>
+        <li><a class="link link-hover" href="{{ site.Params.repoURL }}/blob/main/LICENSE">License ({{ site.Params.license }})</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-white">Documentation</h2>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a class="link link-hover" href="{{ site.Params.docsURL }}">Installation guide</a></li>
+        <li><a class="link link-hover" href="{{ site.Params.repoURL }}/blob/main/docs/SPEC.md">Specification</a></li>
+        <li><a class="link link-hover" href="#download">Downloads</a></li>
+        <li><a class="link link-hover" href="#quickstart">Quick start</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p>© {{ now.Year }} The PhonixPBX contributors. Released under the {{ site.Params.license }} license.</p>
+      <p>Asterisk is a registered trademark of Sangoma Technologies. AskoziaPBX artwork is not used.</p>
+    </div>
+  </div>
+</footer>

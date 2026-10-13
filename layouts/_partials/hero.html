@@ -1,0 +1,41 @@
+<section class="hero-grid relative overflow-hidden bg-slate-brand text-white">
+  <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-2 lg:pb-28 lg:pt-24">
+    <div>
+      <a href="#download" class="badge badge-lg gap-2 border-white/20 bg-white/10 text-white/90">
+        <span class="inline-block size-2 animate-pulse rounded-full bg-brand-sky"></span>
+        Nightly builds available
+      </a>
+      <h1 class="mt-6 text-4xl font-bold leading-tight tracking-tight text-balance sm:text-5xl lg:text-6xl">
+        The appliance PBX,<br><span class="text-brand-sky">reborn.</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+        PhonixPBX is the open-source successor of AskoziaPBX: a complete telephone system built on
+        Asterisk&nbsp;22 and Alpine Linux, managed from a clean web interface. Flash it on a Raspberry&nbsp;Pi,
+        boot it on a PC, or run it as a container — it is up and taking calls in minutes.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#download" class="btn btn-lg border-0 bg-white text-slate-brand shadow-lg hover:bg-brand-sky">
+          {{ partial "icon.html" (dict "name" "download" "class" "size-5") }} Download
+        </a>
+        <a href="{{ site.Params.repoURL }}" class="btn btn-lg btn-outline border-white/40 text-white hover:border-white hover:bg-white/10">
+          {{ partial "icon.html" (dict "name" "brand-github" "class" "size-5") }} View on GitHub
+        </a>
+      </div>
+      <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
+        <li class="flex items-center gap-2">{{ partial "icon.html" (dict "name" "check" "class" "size-4 text-brand-sky") }} Free &amp; open source</li>
+        <li class="flex items-center gap-2">{{ partial "icon.html" (dict "name" "check" "class" "size-4 text-brand-sky") }} amd64 · arm64 · x86</li>
+        <li class="flex items-center gap-2">{{ partial "icon.html" (dict "name" "check" "class" "size-4 text-brand-sky") }} AskoziaPBX config import</li>
+      </ul>
+    </div>
+    <div class="relative">
+      <div class="absolute -inset-6 rounded-3xl bg-brand-sky/20 blur-3xl" aria-hidden="true"></div>
+      <div class="mockup-browser relative border border-white/15 bg-base-300 text-base-content shadow-2xl">
+        <div class="mockup-browser-toolbar">
+          <div class="input text-base-content/60">https://pbx.local/</div>
+        </div>
+        {{- $first := index hugo.Data.screenshots 0 }}
+        {{ partial "screenshot.html" (dict "title" $first.title "src" $first.src) }}
+      </div>
+    </div>
+  </div>
+</section>

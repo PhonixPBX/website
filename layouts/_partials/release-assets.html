@@ -1,0 +1,105 @@
+{{- /* Download cards for one release. Params: release, channel ("stable" | "nightly") */ -}}
+{{- $rel := .release -}}
+{{- $nightly := eq .channel "nightly" -}}
+{{- $sums := index (where $rel.assets "name" "SHA256SUMS") 0 -}}
+{{- $short := substr $rel.target_commitish 0 8 -}}
+<div class="flex flex-col gap-3 rounded-box border border-base-300 bg-base-200 px-5 py-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+    {{- if $nightly }}
+      <span class="badge badge-warning gap-1">{{ partial "icon.html" (dict "name" "alert-triangle" "class" "size-3.5") }} Nightly</span>
+    {{- else }}
+      <span class="badge badge-success">Stable</span>
+    {{- end }}
+    <span class="font-semibold">{{ $rel.name | default $rel.tag_name }}</span>
+    <span class="flex items-center gap-1 text-base-content/60">{{ partial "icon.html" (dict "name" "clock" "class" "size-4") }}
+      <time datetime="{{ $rel.published_at }}">{{ (time $rel.published_at).UTC.Format "2 Jan 2006, 15:04 UTC" }}</time></span>
+    {{- if and $nightly (ge (len $rel.target_commitish) 40) }}
+      <a class="link flex items-center gap-1 font-mono text-base-content/60" href="{{ site.Params.repoURL }}/commit/{{ $rel.target_commitish }}">{{ partial "icon.html" (dict "name" "git-commit" "class" "size-4") }}{{ $short }}</a>
+    {{- end }}
+  </div>
+  <div class="flex flex-wrap gap-2">
+    {{- with $sums }}<a class="btn btn-ghost btn-xs" href="{{ .browser_download_url }}">{{ partial "icon.html" (dict "name" "certificate" "class" "size-4") }}SHA256SUMS</a>{{ end }}
+    <a class="btn btn-ghost btn-xs" href="{{ $rel.html_url }}">{{ partial "icon.html" (dict "name" "external-link" "class" "size-4") }}Release notes</a>
+  </div>
+</div>
+{{- if $nightly }}
+<div role="alert" class="alert alert-warning alert-soft mt-4 text-sm">
+  {{ partial "icon.html" (dict "name" "alert-triangle" "class" "size-5 shrink-0") }}
+  <span>Nightly builds are made automatically from the latest <code>main</code> branch. They are meant for testing and may be unstable.</span>
+</div>
+{{- end }}
+
+<div class="mt-6 grid gap-6 lg:grid-cols-2">
+  {{- range hugo.Data.platforms }}
+  <article class="card min-w-0 border border-base-300 bg-base-100 shadow-sm">
+    <div class="card-body gap-4">
+      <div class="flex items-start gap-3">
+        <div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          {{ partial "icon.html" (dict "name" .icon "class" "size-6") }}
+        </div>
+        <div>
+          <h3 class="card-title text-lg">{{ .name }}</h3>
+          <p class="text-sm text-base-content/60">{{ .note }}</p>
+        </div>
+      </div>
+      <ul class="divide-y divide-base-300 rounded-box border border-base-300">
+        {{- range .boards }}
+          {{- $suffix := printf "-%s." .board }}
+          {{- $image := "" }}{{ $update := "" }}{{ $meta := "" }}
+          {{- range $rel.assets }}
+            {{- if strings.Contains .name $suffix }}
+              {{- if or (strings.HasSuffix .name ".img.zst") (and (strings.HasSuffix .name ".tar.xz") (not (strings.HasSuffix .name ".meta.tar.xz"))) }}{{ $image = . }}
+              {{- else if strings.HasSuffix .name ".update" }}{{ $update = . }}
+              {{- else if strings.HasSuffix .name ".meta.tar.xz" }}{{ $meta = . }}{{ end }}
+            {{- end }}
+          {{- end }}
+        <li class="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="badge badge-primary font-mono">{{ .arch }}</span>
+              {{- with $image }}<span class="text-sm text-base-content/60">{{ partial "filesize.html" .size }}</span>{{ end }}
+            </div>
+            {{- with $image }}<p class="mt-1 truncate font-mono text-xs text-base-content/50" title="{{ .name }}">{{ .name }}</p>{{ end }}
+          </div>
+          <div class="flex flex-wrap gap-2 sm:justify-end">
+            {{- with $image }}
+              <a class="btn btn-primary btn-sm" href="{{ .browser_download_url }}">{{ partial "icon.html" (dict "name" "download" "class" "size-4") }}Download</a>
+            {{- else }}
+              <span class="btn btn-disabled btn-sm">Not available</span>
+            {{- end }}
+            {{- with $meta }}
+              <a class="btn btn-outline btn-sm" href="{{ .browser_download_url }}" title="LXC metadata for lxc-create ({{ partial "filesize.html" .size }})">Metadata</a>
+            {{- end }}
+            {{- with $update }}
+              <a class="btn btn-outline btn-sm" href="{{ .browser_download_url }}" title="Signed update bundle for existing installations ({{ partial "filesize.html" .size }})">Update bundle</a>
+            {{- end }}
+          </div>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+  </article>
+  {{- end }}
+
+  {{- $tag := cond $nightly "edge" "latest" }}
+  {{- $id := printf "docker-pull-%s" .channel }}
+  <article class="card min-w-0 border border-base-300 bg-base-100 shadow-sm lg:col-span-2">
+    <div class="card-body gap-4 md:flex-row md:items-center md:justify-between">
+      <div class="flex items-start gap-3">
+        <div class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          {{ partial "icon.html" (dict "name" "brand-docker" "class" "size-6") }}
+        </div>
+        <div>
+          <h3 class="card-title text-lg">Docker &amp; Podman</h3>
+          <p class="text-sm text-base-content/60">Multi-arch OCI image for <span class="font-mono">linux/amd64</span> and <span class="font-mono">linux/arm64</span>.</p>
+        </div>
+      </div>
+      <div class="flex min-w-0 items-center gap-2 rounded-box bg-neutral py-2 pl-4 pr-2 text-neutral-content">
+        <code id="{{ $id }}" class="truncate font-mono text-sm">docker pull {{ site.Params.image }}:{{ $tag }}</code>
+        <button type="button" class="btn btn-ghost btn-sm btn-square tooltip tooltip-left text-neutral-content" data-tip="Copy" data-copy="{{ $id }}" aria-label="Copy command">
+          {{ partial "icon.html" (dict "name" "copy" "class" "size-4") }}
+        </button>
+      </div>
+    </div>
+  </article>
+</div>

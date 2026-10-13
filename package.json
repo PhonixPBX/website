@@ -1,0 +1,19 @@
+{
+  "name": "phonixpbx-website",
+  "private": true,
+  "description": "PhonixPBX product website (Hugo + Tailwind CSS + daisyUI)",
+  "scripts": {
+    "dev": "hugo server",
+    "build": "hugo --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
+    "daisyui": "5.7.48",
+    "hugo-extended": "0.167.0",
+    "tailwindcss": "4.3.3"
+  },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "hugo-extended": true
+  }
+}

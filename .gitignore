@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.env
+public/
+resources/_gen/
+.hugo_build.lock
+hugo_stats.json

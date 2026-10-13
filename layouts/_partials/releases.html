@@ -1,0 +1,22 @@
+{{- /* Fetch releases from the GitHub API at build time.
+       Returns dict: stable (latest non-prerelease or nil), nightly (tag "nightly" or nil).
+       Set HUGO_GITHUB_TOKEN to avoid API rate limits (done in CI). A failed fetch only warns. */ -}}
+{{- $url := printf "https://api.github.com/repos/%s/releases?per_page=30" site.Params.repo -}}
+{{- $headers := dict "Accept" "application/vnd.github+json" "X-GitHub-Api-Version" "2022-11-28" -}}
+{{- with os.Getenv "HUGO_GITHUB_TOKEN" }}
+  {{- $headers = merge $headers (dict "Authorization" (printf "Bearer %s" .)) }}
+{{- end }}
+{{- $releases := slice -}}
+{{- with try (resources.GetRemote $url (dict "headers" $headers)) }}
+  {{- with .Err }}
+    {{- warnf "releases: could not fetch %s: %s" $url . }}
+  {{- else with .Value }}
+    {{- $releases = .Content | transform.Unmarshal }}
+  {{- else }}
+    {{- warnf "releases: %s returned nothing" $url }}
+  {{- end }}
+{{- end }}
+{{- $published := where $releases "draft" false -}}
+{{- $stable := index (where $published "prerelease" false) 0 -}}
+{{- $nightly := index (where $published "tag_name" "nightly") 0 -}}
+{{- return dict "stable" $stable "nightly" $nightly -}}
