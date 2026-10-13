@@ -1,5 +1,5 @@
 # The Pages workflow overrides baseURL with the URL reported by actions/configure-pages.
-baseURL = "https://phonixpbx.github.io/website/"
+baseURL = "https://phonixpbx.org/"
 locale = "en"
 title = "PhonixPBX"
 disableKinds = ["taxonomy", "term", "rss"]
@@ -11,6 +11,7 @@ disableKinds = ["taxonomy", "term", "rss"]
   docsURL = "https://github.com/PhonixPBX/PhonixPBX/blob/main/docs/INSTALL.md"
   image = "ghcr.io/phonixpbx/phonix"
   license = "Apache-2.0"
+  email = "info@phonixpbx.org"
 
 [build]
   [build.buildStats]

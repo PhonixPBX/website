@@ -6,6 +6,9 @@
         Phonix = phone + phoenix. PhonixPBX carries on the spirit of AskoziaPBX (2007–2011):
         an easy-to-use appliance PBX, rebuilt from the ground up on a modern open-source stack.
       </p>
+      <a class="link link-hover mt-4 inline-flex items-center gap-2 text-sm text-white" href="mailto:{{ site.Params.email }}">
+        {{ partial "icon.html" (dict "name" "mail" "class" "size-4") }}{{ site.Params.email }}
+      </a>
     </div>
     <div>
       <h2 class="text-sm font-semibold uppercase tracking-wider text-white">Project</h2>
@@ -23,6 +26,7 @@
         <li><a class="link link-hover" href="{{ site.Params.repoURL }}/blob/main/docs/SPEC.md">Specification</a></li>
         <li><a class="link link-hover" href="#download">Downloads</a></li>
         <li><a class="link link-hover" href="#quickstart">Quick start</a></li>
+        <li><a class="link link-hover" href="mailto:{{ site.Params.email }}">Contact</a></li>
       </ul>
     </div>
   </div>

@@ -8,7 +8,7 @@ in the colours of the PhonixPBX web interface.
 
 ```sh
 npm ci           # installs Hugo (hugo-extended), Tailwind CSS and daisyUI
-npm run dev      # http://localhost:1313/website/
+npm run dev      # http://localhost:1313/
 npm run build    # production build into public/
 ```
 
@@ -21,7 +21,7 @@ Set `HUGO_GITHUB_TOKEN` to avoid GitHub API rate limits when fetching release da
 | Feature cards | `data/features.yaml` |
 | Platforms and download mapping (board → asset) | `data/platforms.yaml` |
 | Screenshots (placeholders until `src` is set) | `data/screenshots.yaml`, images in `static/screenshots/` |
-| Links, Docker image | `[params]` in `hugo.toml` |
+| Links, contact email, Docker image | `[params]` in `hugo.toml` |
 | Theme colours (`phonix`, `phonix-dark`) | `assets/css/main.css` |
 | Logos (from `phonix/web/static/img/` upstream) | `static/img/` |
 
@@ -62,6 +62,29 @@ Patch updates are merged automatically by `.github/workflows/dependabot-automerg
 
 One-time repository settings:
 
-1. **Settings → Pages → Source:** GitHub Actions
+1. **Settings → Pages:**
+   - Set **Source** to GitHub Actions.
+   - Set **Custom domain** to `phonixpbx.org`.
+   - Enable **Enforce HTTPS**.
+
+   No `CNAME` file is needed when deploying with Actions.
 2. **Settings → General:** enable *Allow auto-merge*
 3. **Branch protection / ruleset for `main`:** require the `build` status check, so auto-merge waits for a green build.
+
+### Custom domain `phonixpbx.org`
+
+DNS records at the registrar ([GitHub docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)):
+
+| Name | Type | Value |
+|---|---|---|
+| `@` | A | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| `@` | AAAA | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
+| `www` | CNAME | `phonixpbx.github.io` |
+
+Keep the existing MX records for the `info@phonixpbx.org` mailbox.
+
+It is also recommended to verify the domain for the organization under
+**Organization settings → Pages → Add a domain**, to prevent domain takeover.
+
+The canonical URL in `hugo.toml` is `https://phonixpbx.org/`. In CI, the workflow takes the URL
+reported by `actions/configure-pages`, so the two always match.
