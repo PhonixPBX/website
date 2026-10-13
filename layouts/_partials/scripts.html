@@ -32,5 +32,20 @@
         } catch (e) {}
       })
     );
+
+    // Screenshot lightbox.
+    const lightbox = document.getElementById("lightbox");
+    document.querySelectorAll("[data-lightbox]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        if (!lightbox) return;
+        const { lightbox: src, lightboxTitle: title, lightboxCaption: caption } = btn.dataset;
+        const img = lightbox.querySelector("[data-lightbox-img]");
+        img.src = src;
+        img.alt = `PhonixPBX ${title} screenshot`;
+        lightbox.querySelector("[data-lightbox-title]").textContent = title;
+        lightbox.querySelector("[data-lightbox-caption]").textContent = caption ? ` — ${caption}` : "";
+        lightbox.showModal();
+      })
+    );
   })();
 </script>
