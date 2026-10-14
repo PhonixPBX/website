@@ -12,6 +12,8 @@ npm run dev      # hugo server on http://localhost:1313/
 npm run build    # hugo --minify into public/
 ```
 
+On hosts with an outdated Node.js, prefix commands with `./podman.sh` to run them in a `node:lts` Podman container (dev server needs `-- --bind 0.0.0.0`); with a recent system Node.js, run them directly.
+
 Hugo comes from `node_modules` (use `npx hugo ...`), not a system install; its version is pinned in `package.json` and bumped by Dependabot. CI builds with `npx hugo --minify --gc` and `HUGO_ENVIRONMENT=production`.
 
 Set `HUGO_GITHUB_TOKEN` locally to avoid GitHub API rate limits. Remote release data is cached for 10 minutes (`[caches.getresource]` in `hugo.toml`).

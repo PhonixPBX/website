@@ -14,6 +14,15 @@ npm run build    # production build into public/
 
 Set `HUGO_GITHUB_TOKEN` to avoid GitHub API rate limits when fetching release data.
 
+If the system Node.js is too old, run the same commands in a Node.js LTS container with Podman
+instead. A recent system Node.js needs no container.
+
+```sh
+./podman.sh npm ci
+./podman.sh npm run dev -- --bind 0.0.0.0   # http://localhost:1313/
+./podman.sh npm run build
+```
+
 ## Content
 
 | What | Where |
