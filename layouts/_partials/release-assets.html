@@ -8,7 +8,7 @@
     {{- if $nightly }}
       <span class="badge badge-warning gap-1">{{ partial "icon.html" (dict "name" "alert-triangle" "class" "size-3.5") }} Nightly</span>
     {{- else }}
-      <span class="badge badge-success">Stable</span>
+      <span class="badge badge-warning">Beta</span>
     {{- end }}
     <span class="font-semibold">{{ $rel.name | default $rel.tag_name }}</span>
     <span class="flex items-center gap-1 text-base-content/60">{{ partial "icon.html" (dict "name" "clock" "class" "size-4") }}
