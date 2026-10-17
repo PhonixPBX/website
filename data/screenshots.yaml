@@ -7,7 +7,19 @@
   src: "/screenshots/phones.png"
 - title: Dialplan
   caption: Call groups, applications and feature codes.
-  src: "/screenshots/callgroups.png"
+  src: "/screenshots/call_groups.png"
+- title: IVR
+  caption: Interactive voice response setup and management.
+  src: "/screenshots/ivr.png"
+- title: Business Hours
+  caption: Configure and manage business hours for call routing.
+  src: "/screenshots/business_hours.png"
 - title: Live status
-  caption: Channels, logs and resource graphs in real time.
+  caption: Channelsand resource graphs in real time.
+  src: "/screenshots/live_status.png"
+- title: Logs
+  caption: View system and application logs in real time.
   src: "/screenshots/logs.png"
+- title: API Tokens
+  caption: Manage and use API tokens for MCP and REST API access.
+  src: "/screenshots/api_tokens.png"

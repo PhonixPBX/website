@@ -3,7 +3,7 @@
   text: PJSIP, IAX and external phones, plus SIP and IAX trunks with registration — set up in a few clicks.
 - icon: arrows-split
   title: Dialplan without the pain
-  text: Applications, call groups, transfers, feature codes and call parking. Print the whole dialplan on one page.
+  text: Applications, call groups, transfers, IVR, business hours and holiday handling, feature codes and call parking. Print the whole dialplan on one page.
 - icon: microphone-2
   title: Voicemail & conferencing
   text: Voicemail with voicemail-to-email, ConfBridge conference rooms, music on hold and custom greetings.
