@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3",
-    "daisyui": "5.7.48",
+    "daisyui": "5.7.50",
     "hugo-extended": "0.167.0",
     "tailwindcss": "4.3.3"
   },
