@@ -69,7 +69,7 @@
     - { name: Tabler, url: "https://tabler.io/", license: "MIT" }
     - { name: Tabler Icons, url: "https://tabler.io/icons", license: "MIT" }
     - { name: htmx, url: "https://htmx.org/", license: "0BSD" }
-    - { name: ApexCharts, url: "https://apexcharts.com/", license: "ApexCharts Community License" }
+    - { name: uPlot, url: "https://github.com/leeoniya/uPlot", license: "MIT" }
     - { name: Tom Select, url: "https://tom-select.js.org/", license: "Apache-2.0" }
     - { name: Dropzone, url: "https://www.dropzone.dev/", license: "MIT" }
     - { name: IMask, url: "https://imask.js.org/", license: "MIT" }
