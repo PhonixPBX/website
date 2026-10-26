@@ -1,9 +1,9 @@
 {{- $links := slice
-  (dict "href" "#features" "label" "Features")
-  (dict "href" "#screenshots" "label" "Screenshots")
-  (dict "href" "#platforms" "label" "Platforms")
-  (dict "href" "#download" "label" "Download")
-  (dict "href" "#quickstart" "label" "Quick start")
+  (dict "href" ("/#features" | relURL) "label" "Features")
+  (dict "href" ("/#screenshots" | relURL) "label" "Screenshots")
+  (dict "href" ("/#platforms" | relURL) "label" "Platforms")
+  (dict "href" ("/#download" | relURL) "label" "Download")
+  (dict "href" ("/#quickstart" | relURL) "label" "Quick start")
 -}}
 <header class="sticky top-0 z-50 bg-slate-brand/95 text-white shadow-md backdrop-blur supports-[backdrop-filter]:bg-slate-brand/85">
   <nav class="navbar mx-auto max-w-7xl px-4 sm:px-6" aria-label="Main">

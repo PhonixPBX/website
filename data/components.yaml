@@ -1,0 +1,77 @@
+# Major third-party components shipped in PhonixPBX images, rendered on /components/.
+# Sources: packaging/apk/phonix/APKBUILD, image/profiles/*.packages, Containerfile,
+# pyproject.toml and phonix/web/static/vendor/VERSIONS in the PhonixPBX repository.
+# license is an SPDX expression where one exists.
+- group: Operating system
+  text: The root file system of the disk images, LXC containers and the OCI image.
+  items:
+    - { name: Alpine Linux, url: "https://alpinelinux.org/", license: "GPL-2.0-only", note: "apk-tools and alpine-baselayout; every package keeps its own license" }
+    - { name: Linux kernel, url: "https://kernel.org/", license: "GPL-2.0-only WITH Linux-syscall-note", note: "Disk images only (linux-lts, linux-rpi)" }
+    - { name: linux-firmware, url: "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git", license: "Various, redistributable", note: "Broadcom and Realtek NIC firmware, disk images only" }
+    - { name: musl libc, url: "https://musl.libc.org/", license: "MIT" }
+    - { name: BusyBox, url: "https://busybox.net/", license: "GPL-2.0-only" }
+    - { name: OpenRC, url: "https://github.com/OpenRC/openrc", license: "BSD-2-Clause", note: "Disk images and LXC" }
+    - { name: OpenSSL, url: "https://openssl-library.org/", license: "Apache-2.0" }
+    - { name: tzdata, url: "https://www.iana.org/time-zones", license: "Public domain" }
+
+- group: Boot
+  text: Boot loaders of the disk images.
+  items:
+    - { name: GRUB, url: "https://www.gnu.org/software/grub/", license: "GPL-3.0-or-later", note: "PC images (UEFI and BIOS)" }
+    - { name: Raspberry Pi firmware, url: "https://github.com/raspberrypi/firmware", license: "Proprietary, redistributable", note: "Raspberry Pi image" }
+
+- group: Telephony
+  items:
+    - { name: Asterisk, url: "https://www.asterisk.org/", license: "GPL-2.0-only" }
+    - { name: PJSIP (pjproject), url: "https://www.pjsip.org/", license: "GPL-2.0-or-later", note: "SIP stack, bundled with Asterisk" }
+    - { name: libSRTP, url: "https://github.com/cisco/libsrtp", license: "BSD-3-Clause" }
+    - { name: Opus, url: "https://opus-codec.org/", license: "BSD-3-Clause" }
+    - { name: Speex, url: "https://www.speex.org/", license: "BSD-3-Clause" }
+    - { name: Asterisk sounds and music on hold, url: "https://downloads.asterisk.org/pub/telephony/sounds/", license: "CC-BY-SA-3.0" }
+    - { name: SoX, url: "https://sourceforge.net/projects/sox/", license: "GPL-2.0-or-later", note: "Conversion of uploaded audio files" }
+
+- group: System services
+  items:
+    - { name: nginx, url: "https://nginx.org/", license: "BSD-2-Clause", note: "TLS termination in front of the web application" }
+    - { name: lego, url: "https://go-acme.github.io/lego/", license: "MIT", note: "Let's Encrypt / ACME certificates" }
+    - { name: nftables, url: "https://netfilter.org/projects/nftables/", license: "GPL-2.0-or-later" }
+    - { name: chrony, url: "https://chrony-project.org/", license: "GPL-2.0-only", note: "Disk images and LXC" }
+    - { name: msmtp, url: "https://marlam.de/msmtp/", license: "GPL-3.0-or-later" }
+    - { name: Dropbear SSH, url: "https://matt.ucc.asn.au/dropbear/dropbear.html", license: "MIT", note: "Disk images and LXC" }
+    - { name: OpenDoas, url: "https://github.com/Duncaen/OpenDoas", license: "ISC" }
+    - { name: logrotate, url: "https://github.com/logrotate/logrotate", license: "GPL-2.0-or-later" }
+    - { name: Tini, url: "https://github.com/krallin/tini", license: "MIT", note: "OCI image only" }
+
+- group: Web application
+  text: The PhonixPBX web application runs on Python and these libraries.
+  items:
+    - { name: Python, url: "https://www.python.org/", license: "PSF-2.0" }
+    - { name: FastAPI, url: "https://fastapi.tiangolo.com/", license: "MIT" }
+    - { name: Starlette, url: "https://www.starlette.io/", license: "BSD-3-Clause" }
+    - { name: Uvicorn, url: "https://www.uvicorn.org/", license: "BSD-3-Clause" }
+    - { name: Pydantic, url: "https://docs.pydantic.dev/", license: "MIT" }
+    - { name: SQLite, url: "https://sqlite.org/", license: "Public domain" }
+    - { name: SQLAlchemy, url: "https://www.sqlalchemy.org/", license: "MIT" }
+    - { name: Alembic, url: "https://alembic.sqlalchemy.org/", license: "MIT" }
+    - { name: Jinja, url: "https://jinja.palletsprojects.com/", license: "BSD-3-Clause" }
+    - { name: itsdangerous, url: "https://itsdangerous.palletsprojects.com/", license: "BSD-3-Clause" }
+    - { name: argon2-cffi, url: "https://argon2-cffi.readthedocs.io/", license: "MIT" }
+    - { name: python-multipart, url: "https://github.com/Kludex/python-multipart", license: "Apache-2.0" }
+    - { name: Babel, url: "https://babel.pocoo.org/", license: "BSD-3-Clause" }
+    - { name: defusedxml, url: "https://github.com/tiran/defusedxml", license: "PSF-2.0" }
+    - { name: cryptography, url: "https://cryptography.io/", license: "Apache-2.0 OR BSD-3-Clause" }
+    - { name: python-zstandard, url: "https://github.com/indygreg/python-zstandard", license: "BSD-3-Clause" }
+    - { name: HTTPX, url: "https://www.python-httpx.org/", license: "BSD-3-Clause" }
+
+- group: Web interface
+  text: Front-end libraries bundled with the web interface.
+  items:
+    - { name: Tabler, url: "https://tabler.io/", license: "MIT" }
+    - { name: Tabler Icons, url: "https://tabler.io/icons", license: "MIT" }
+    - { name: htmx, url: "https://htmx.org/", license: "0BSD" }
+    - { name: ApexCharts, url: "https://apexcharts.com/", license: "ApexCharts Community License" }
+    - { name: Tom Select, url: "https://tom-select.js.org/", license: "Apache-2.0" }
+    - { name: Dropzone, url: "https://www.dropzone.dev/", license: "MIT" }
+    - { name: IMask, url: "https://imask.js.org/", license: "MIT" }
+    - { name: Autosize, url: "https://github.com/jackmoore/autosize", license: "MIT" }
+    - { name: SortableJS, url: "https://sortablejs.github.io/Sortable/", license: "MIT" }
