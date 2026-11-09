@@ -1,0 +1,62 @@
+<section id="companions" class="border-t border-base-300 bg-base-200 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    {{ partial "section-head.html" (dict
+      "eyebrow" "Companion apps"
+      "title" "More from the PhonixPBX project"
+      "text" "Open source tools that work hand in hand with PhonixPBX — and with any other Asterisk system."
+    ) }}
+    <div class="mt-14 grid gap-6 lg:grid-cols-2">
+      {{- range hugo.Data.companions }}
+      {{- $url := printf "https://github.com/%s" .repo }}{{ $id := .id }}{{ $name := .name }}{{ $caption := .caption }}{{ $size := .size | default (slice 1600 1000) }}{{ $frame := .frame }}
+      <article class="card min-w-0 border border-base-300 bg-base-100 shadow-sm">
+        {{- with .screenshot }}
+        <figure class="flex min-h-64 items-center justify-center rounded-t-box border-b border-base-300 bg-base-200 px-6 pt-6 pb-2 sm:min-h-80">
+          <button type="button" class="group block w-full cursor-zoom-in" data-lightbox="{{ . | relURL }}" data-lightbox-title="{{ $name }}" data-lightbox-caption="{{ $caption }}" aria-label="Enlarge {{ $name }} screenshot">
+            <img src="{{ . | relURL }}" alt="{{ $name }} screenshot" loading="lazy" width="{{ index $size 0 }}" height="{{ index $size 1 }}" class="{{ if $frame }}mb-4 rounded-lg border border-base-300 shadow-md {{ end }}mx-auto max-h-72 w-auto max-w-full object-contain transition-opacity group-hover:opacity-90 sm:max-h-80">
+          </button>
+        </figure>
+        {{- end }}
+        <div class="card-body gap-4">
+          <div class="flex items-center gap-4">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              {{ partial "icon.html" (dict "name" .icon "class" "size-7") }}
+            </div>
+            <div>
+              <h3 class="card-title text-xl text-primary">{{ .name }}</h3>
+              <ul class="mt-1 flex flex-wrap gap-1.5" aria-label="Platforms">
+                {{- range .badges }}<li class="badge badge-outline badge-sm">{{ . }}</li>{{ end }}
+              </ul>
+            </div>
+          </div>
+          <p class="text-base-content/75">{{ .text }}</p>
+          <ul class="space-y-2 text-sm">
+            {{- range .bullets }}
+            <li class="flex gap-2">{{ partial "icon.html" (dict "name" "check" "class" "mt-0.5 size-4 shrink-0 text-success") }}<span>{{ . }}</span></li>
+            {{- end }}
+          </ul>
+          {{- with .cmd }}
+          <div class="min-w-0">
+            <div class="mb-2 flex justify-end">
+              <button type="button" class="btn btn-ghost btn-xs tooltip tooltip-left" data-tip="Copy" data-copy="{{ $id }}" aria-label="Copy command">
+                {{ partial "icon.html" (dict "name" "copy" "class" "size-4") }} Copy
+              </button>
+            </div>
+            <div class="mockup-code w-full bg-slate-brand-deep text-sm text-white" id="{{ $id }}">
+              {{- range . }}<pre data-prefix="{{ if hasPrefix . " " }}>{{ else }}${{ end }}"><code>{{ . }}</code></pre>{{ end -}}
+            </div>
+          </div>
+          {{- end }}
+          <div class="card-actions mt-auto pt-2">
+            <a href="{{ $url }}/releases" class="btn btn-primary btn-sm">
+              {{ partial "icon.html" (dict "name" "download" "class" "size-4") }} Download
+            </a>
+            <a href="{{ $url }}" class="btn btn-outline btn-sm" rel="noopener">
+              {{ partial "icon.html" (dict "name" "brand-github" "class" "size-4") }} GitHub
+            </a>
+          </div>
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </div>
+</section>

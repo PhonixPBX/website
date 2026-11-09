@@ -1,0 +1,32 @@
+- name: Call Switcher
+  repo: PhonixPBX/Call-Switcher
+  icon: phone-outgoing
+  screenshot: screenshots/call_switcher.png
+  caption: Settings window on macOS, connected to PhonixPBX
+  size: [1218, 1088]
+  text: "Click a phone number anywhere on your desktop and let your desk phone dial it. A menu bar app for macOS and a tray app for Linux and Windows that handles tel:, callto: and sip: links."
+  bullets:
+    - Runs on macOS (Apple Silicon, DMG), Linux (Flatpak) and Windows 10 and 11 (installer, no admin rights needed).
+    - Dials through the PhonixPBX click-to-call API — your phone rings first, then the number is called.
+    - Also works with Asterisk ARI or a softphone such as Telephone.app, Linphone or MicroSIP.
+    - Credentials stay in the macOS keychain, Secret Service or Windows Credential Manager.
+    - In English, German, French, Italian, Spanish and Portuguese (BR).
+  badges: [macOS, Linux (Flatpak), Windows]
+- name: RestfulTTS
+  repo: PhonixPBX/RestfulTTS
+  icon: speakerphone
+  screenshot: screenshots/restfultts.png
+  caption: Web UI with the German Thorsten voice
+  size: [1024, 600]
+  frame: true
+  text: Text-to-speech for PhonixPBX announcements, served over a REST API, an MCP server and a small web UI.
+  bullets:
+    - Natural voices from Kokoro models in German, English, French and Italian.
+    - Ready for Asterisk — WAV, signed linear, G.711 µ-law and A-law at 8 or 16 kHz.
+    - Each text is synthesized once and cached; optional bearer token.
+    - Runs on the CPU in a container for amd64 and arm64.
+  badges: [Docker / Podman, REST, MCP]
+  id: cs-restfultts
+  cmd:
+    - "podman run -d -p 8000:8000 -v restfultts_data:/data \\"
+    - "  ghcr.io/phonixpbx/restfultts:latest"
